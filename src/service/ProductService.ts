@@ -1,28 +1,27 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: ''
+    baseURL: 'https://crudalilucma.herokuapp.com'
 })
 
-
-export const findAll = async(url: string,setDado: any, header: any) => { 
+export const findAll = async(url: string,setData: any, header: any) => { 
     const resposta = await api.get(url,header)
-    setDado(resposta.data)
+    setData(resposta.data)
 }
 
-export const findById = async(url: string,setDado: any, header: any) => { 
+export const findById = async(url: string,setData: any, header: any) => { 
     const resposta = await api.get(url,header)
-    setDado(resposta.data)
+    setData(resposta.data)
 }
 
-export const post = async(url: string, dados: any, setDado: any, header: any) => { 
+export const post = async(url: string, dados: any, setData: any, header: any) => { 
     const resposta = await api.post(url,dados,header)
-    setDado(resposta.data)
+    setData(resposta.data)
 }
 
-export const put = async(url: string, dados: any, setDado: any, header: any) => { 
+export const put = async(url: string, dados: any, setData: any, header: any) => { 
     const resposta = await api.put(url,dados,header)
-    setDado(resposta.data)
+    setData(resposta.data)
 }
 
 export const deleteById = async(url: string,header: any) => { 
