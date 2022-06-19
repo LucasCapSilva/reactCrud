@@ -1,14 +1,17 @@
 
 import { useEffect, useState } from 'react';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import Category from '../../../../model/Category';
+import { FlatList, Text, TouchableOpacity, View, Image } from 'react-native';
 import { findAll } from '../../../../service/ProductService';
 import { styles } from './GetAllProductStyle'
-import { FontAwesome5 } from '@expo/vector-icons'; 
-import { AntDesign } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Product from '../../../../model/Product';
-export default function GetAllProductComponent() {
+
+
+interface GetAllProductProps {
+  navigation: any;
+}
+
+const GetAllProductComponent = ({ navigation }: GetAllProductProps) => {
 
   const [products, setProducts] = useState<Product[]>([])
 
@@ -25,30 +28,48 @@ export default function GetAllProductComponent() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>GetAllProductComponent</Text>
-      <ScrollView >
-        {
-          products.map(product => (
 
+      <FlatList
+        data={products}
+        renderItem={(product) => {
+          return (
             <View style={styles.card}>
               <View style={styles.cardItem}>
-                <Text style={styles.textItem}>{product.id}</Text>
-                <Text style={styles.textItem}>  {product.description}</Text>
+                <Text style={styles.textItem}>{product.item.id}</Text>
+                <Text style={styles.textItem}>  {product.item.description}</Text>
               </View>
               <View style={styles.cardItem}>
-              <TouchableOpacity style={styles.buttonItem}>
-              <AntDesign name="delete"  size={30} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonItem}>
-              <FontAwesome5 name="edit" size={28} color="black" />
-              </TouchableOpacity>
+                <Text style={styles.textItem}> {product.item.categoria?.description}</Text>
+              </View>
+              <View style={styles.cardItem}>
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  }}
+                />
+              </View>
+              <View style={styles.cardItem}>
+                <TouchableOpacity>
+                  <MaterialCommunityIcons name="delete-outline" size={70} color="red"
+                   onPress={() => navigation.navigate('DeleteProduct',{
+                    id:product.item.id
+                })}/>
+                </TouchableOpacity>
+                <TouchableOpacity >
+                  <MaterialCommunityIcons name="square-edit-outline" size={70} color="blue" 
+                    onPress={() => navigation.navigate('PostPutProduct',{
+                      id:product.item.id
+                  })}/>
+                </TouchableOpacity>
               </View>
             </View>
-
-          ))
-        }
-
-      </ScrollView>
+          );
+        }}
+      />
     </View>
 
   );
 }
+
+export default GetAllProductComponent;
