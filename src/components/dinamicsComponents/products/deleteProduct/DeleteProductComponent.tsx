@@ -8,7 +8,7 @@ import { styles } from './DeleteProductStyle'
 
 
 const DeleteProductComponent = ({ route, navigation }: any) => {
-  const { id } = route.params;
+  var id  = route.params.id;
 
   const [product, setProduct] = useState<Product>({
     id: 0,

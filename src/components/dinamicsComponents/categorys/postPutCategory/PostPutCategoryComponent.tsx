@@ -1,22 +1,27 @@
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import Category from '../../../../model/Category';
-import { findById } from '../../../../service/CategoryService';
-import { styles } from './PostPutCategoryStyle'
 
+import { useEffect, useState } from 'react';
+import {  Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Category from '../../../../model/Category';
+import { findById, post, put } from '../../../../service/CategoryService';
+import { styles } from './PostPutCategoryStyle'
+import { Feather } from '@expo/vector-icons';
 
 const PostPutCategoryComponent = ({ route, navigation }: any) => {
-  const { id } = route.params;
+  var id = 0; 
+
 
   const [category, setCategory] = useState<Category>({
     id: 0,
-    description: ""
+    description: ''
   })
 
+
   useEffect(() => {
-    getById()
+     id  = route.params.id;
+      if (id != 0) {
+      getById()  
+      }
   }, [])
 
   async function getById() {
@@ -26,30 +31,51 @@ const PostPutCategoryComponent = ({ route, navigation }: any) => {
   }
 
 
+
+async function onSubmit() {
+  if (id != 0) {
+    await put(`/categoria`,category, setCategory, {
+
+    })
+      alert('Tema atualizado com sucesso');
+  } else {
+    await post(`/categoria`,category, setCategory, {
+
+    })
+      alert('Tema cadastrado com sucesso');
+  }
+  back()
+
+}
+
+function back() {
+  navigation.navigate('GetAllCategory')
+}
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PostPutCategoryComponent</Text>
       <View style={styles.card}>
         <View style={styles.cardItem}>
-          <Text style={styles.textItem}>{category.id} </Text>
-          <Text style={styles.textItem}>{category.description}</Text>
+          <Text style={styles.textItem}>Description</Text>
+
         </View>
         <View style={styles.cardItem}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
+          <TextInput
+            placeholder="Description"
+            value={category.description}
+            style={styles.input}
+            onChangeText={(text) => setCategory({ ...category, description: text })}
           />
         </View>
-        <View style={styles.cardItem}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="delete-outline" size={70} color="red" />
-          </TouchableOpacity>
-          <TouchableOpacity >
-            <MaterialCommunityIcons name="square-edit-outline" size={70} color="blue" />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.buttonSend}
+        onPress={() => onSubmit()}>
+        
+          <Text style={styles.buttonText}>Send </Text>
+          <Feather name="send" size={20} color="#FFFFFF" />
+        </TouchableOpacity>
+      
       </View>
     </View>
   );

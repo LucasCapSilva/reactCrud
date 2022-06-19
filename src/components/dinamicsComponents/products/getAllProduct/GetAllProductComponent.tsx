@@ -18,7 +18,7 @@ const GetAllProductComponent = ({ navigation }: GetAllProductProps) => {
 
   useEffect(() => {
     getAll()
-  }, [products.length])
+  }, [])
 
   async function getAll() {
     await findAll("/produtos", setProducts, {

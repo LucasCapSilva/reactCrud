@@ -21,7 +21,7 @@ function StackNavigation() {
       screenOptions={{
         headerShown: true
       }}
-      initialRouteName="GetAllProduct"
+      initialRouteName="GetAllCategory"
       >
         <Stack.Screen  name="Home"   component={HomeScreen} />
 

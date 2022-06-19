@@ -8,7 +8,7 @@ import { styles } from './DeleteCategoryStyle'
 
 
 const DeleteCategoryComponent = ({ route, navigation }: any) => {
-  const { id } = route.params;
+  var id  = route.params.id;
 
   const [category, setCategory] = useState<Category>({
     id: 0,
