@@ -4,21 +4,35 @@ import { findById, post, put } from '../../../../service/ProductService';
 import { styles } from './PostPutProductStyle'
 import { Feather } from '@expo/vector-icons';
 import Product from '../../../../model/Product';
+import { Picker } from '@react-native-picker/picker';
+import { findAll } from '../../../../service/CategoryService';
 
 
 const PostPutProductComponent = ({ route, navigation }) => {
 
   const [product, setProduct] = useState({
     id: 0,
-    description: ''
+    description: '',
+    categoria:null
   })
- 
+
+  const [categorys, setCategorys] = useState([]);
+  const [category, setCategory] = useState({
+    id: 0,
+    description: ""
+  })
 
   useEffect(() => {
+    getAllCategoria();
     if (route.params.id != 0) {
       getById()
     }
   }, [])
+
+  useEffect(() => { 
+    setProduct({ ...product, categoria:category })
+}, [category])
+
 
   async function getById() {
     await findById(`/produtos/${route.params.id}`, setProduct, {
@@ -26,9 +40,16 @@ const PostPutProductComponent = ({ route, navigation }) => {
     })
   }
 
+  async function getAllCategoria() {
+    await findAll("/categoria", setCategorys, {
+
+    })
+
+  }
 
 
   async function onSubmit() {
+   
     if (route.params.id != 0) {
       await put(`/produtos`, product, setProduct, {
 
@@ -42,7 +63,6 @@ const PostPutProductComponent = ({ route, navigation }) => {
       alert('Product created with success');
       back()
     }
-
 
   }
 
@@ -70,7 +90,19 @@ const PostPutProductComponent = ({ route, navigation }) => {
           />
         </View>
         <View style={styles.cardItem}>
-      
+          <Picker
+            selectedValue={category.id}
+            style={{ height: "15%", width: "100%" }}
+            onValueChange={(itemValue, itemIndex) => setCategory({ ...category, id: itemValue })}>
+        
+            {
+              categorys.map((cat, index) => {
+                return (
+                  <Picker.Item key={index} label={cat.description} value={cat.id} />
+                )
+              })
+            }
+          </Picker>
 
         </View>
         <TouchableOpacity style={styles.buttonSend}
