@@ -6,20 +6,13 @@ import { Feather } from '@expo/vector-icons';
 import Product from '../../../../model/Product';
 
 
-const PostPutProductComponent = ({ route, navigation }: any) => {
+const PostPutProductComponent = ({ route, navigation }) => {
 
-  const [product, setProduct] = useState<Product>({
+  const [product, setProduct] = useState({
     id: 0,
     description: ''
   })
-  let data = [{
-    value: 'Banana',
-  }, {
-    value: 'Mango',
-  }, {
-    value: 'Pear',
-  }];
-
+ 
 
   useEffect(() => {
     if (route.params.id != 0) {
@@ -62,7 +55,7 @@ const PostPutProductComponent = ({ route, navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>PostPutCategoryComponent</Text>
+      <Text style={styles.title}>PostPutProductComponent</Text>
       <View style={styles.card}>
         <View style={styles.cardItem}>
           <Text style={styles.textItem}>Description</Text>
