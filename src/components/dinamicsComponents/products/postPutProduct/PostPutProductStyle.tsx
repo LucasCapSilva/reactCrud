@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     marginVertical: "5%",
     backgroundColor: '#FFFFFF',
     borderColor: "#cecece",
-    borderRadius: 10,
+    borderRadius:20,
     paddingVertical: "10%",
     width: "100%"
 
@@ -25,15 +25,41 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: "5%",
-    marginVertical: "3%"
+    marginVertical: "1%"
   },
-  image: {
-    width: 250,
-    height: 250,
+  input: {
+  
+    margin: 12,
+    width:"100%",
+    fontSize:20,
+    borderColor:"#adadad",
+    borderWidth: 2,
+    borderRadius:20,
+    padding: 15,
   },
   textItem: {
     fontSize: 30,
     fontWeight: "bold"
   },
+  buttonSend:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:"center",
+    borderColor:"#527BFF",
+    backgroundColor:"#527BFF",
+    padding: 15,
+    borderWidth: 1,
+    borderRadius:20,
+    width:"35%",
+    marginVertical:"2%",
+    marginLeft:"5%"
+   
+  },
+  buttonText:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color:"#FFFFFF"
+   
+  }
 });
 

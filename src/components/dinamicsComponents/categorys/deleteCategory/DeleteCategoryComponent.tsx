@@ -3,7 +3,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Category from '../../../../model/Category';
-import { findById } from '../../../../service/CategoryService';
+import { deleteById, findById } from '../../../../service/CategoryService';
 import { styles } from './DeleteCategoryStyle'
 
 
@@ -25,6 +25,14 @@ const DeleteCategoryComponent = ({ route, navigation }: any) => {
     })
   }
 
+  async function deleteCategory() {
+    await deleteById(`/categoria/${id}`, {
+
+    })
+    await alert('Category deleted with success');
+    await navigation.navigate('GetAllCategory');
+  }
+
 
   return (
     <View style={styles.container}>
@@ -43,11 +51,14 @@ const DeleteCategoryComponent = ({ route, navigation }: any) => {
           />
         </View>
         <View style={styles.cardItem}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="delete-outline" size={70} color="red" />
+          <TouchableOpacity style={styles.buttonSend} onPress={() => deleteCategory()}>
+            <MaterialCommunityIcons name="delete-outline" size={20} color="white"/>
+            <Text style={styles.buttonText}>Delete</Text>
           </TouchableOpacity>
-          <TouchableOpacity >
-            <MaterialCommunityIcons name="square-edit-outline" size={70} color="blue" />
+
+          <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.navigate('GetAllCategory')}>
+            <MaterialCommunityIcons name="delete-outline" size={20} color="white"/>
+            <Text style={styles.buttonText}>Go Back</Text>
           </TouchableOpacity>
         </View>
       </View>

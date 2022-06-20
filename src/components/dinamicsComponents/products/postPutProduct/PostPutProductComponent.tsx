@@ -1,56 +1,92 @@
-
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import Product from '../../../../model/Product';
-import { findById } from '../../../../service/CategoryService';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { findById, post, put } from '../../../../service/ProductService';
 import { styles } from './PostPutProductStyle'
+import { Feather } from '@expo/vector-icons';
+import Product from '../../../../model/Product';
 
 
 const PostPutProductComponent = ({ route, navigation }: any) => {
-  var id  = route.params.id;
 
   const [product, setProduct] = useState<Product>({
     id: 0,
-    description: "",
-    categoria:null
+    description: ''
   })
+  let data = [{
+    value: 'Banana',
+  }, {
+    value: 'Mango',
+  }, {
+    value: 'Pear',
+  }];
+
 
   useEffect(() => {
-    getById()
+    if (route.params.id != 0) {
+      getById()
+    }
   }, [])
 
   async function getById() {
-    await findById(`/produtos/${id}`, setProduct, {
+    await findById(`/produtos/${route.params.id}`, setProduct, {
 
     })
   }
 
 
+
+  async function onSubmit() {
+    if (route.params.id != 0) {
+      await put(`/produtos`, product, setProduct, {
+
+      })
+      await alert('Product updated with success');
+      back()
+    } else {
+      await post(`/produtos`, product, setProduct, {
+
+      })
+      alert('Product created with success');
+      back()
+    }
+
+
+  }
+
+  function back() {
+    navigation.navigate('GetAllProduct');
+
+
+  }
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>PostPutProductComponent</Text>
+      <Text style={styles.title}>PostPutCategoryComponent</Text>
       <View style={styles.card}>
         <View style={styles.cardItem}>
-          <Text style={styles.textItem}>{product.id} </Text>
-          <Text style={styles.textItem}>{product.description}</Text>
+          <Text style={styles.textItem}>Description</Text>
+
         </View>
         <View style={styles.cardItem}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
+          <TextInput
+            placeholder="Description"
+            value={product.description}
+            style={styles.input}
+            onChangeText={(text) => setProduct({ ...product, description: text })}
           />
         </View>
         <View style={styles.cardItem}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="delete-outline" size={70} color="red" />
-          </TouchableOpacity>
-          <TouchableOpacity >
-            <MaterialCommunityIcons name="square-edit-outline" size={70} color="blue" />
-          </TouchableOpacity>
+      
+
         </View>
+        <TouchableOpacity style={styles.buttonSend}
+          onPress={() => onSubmit()}>
+
+          <Text style={styles.buttonText}>Send </Text>
+          <Feather name="send" size={20} color="#FFFFFF" />
+        </TouchableOpacity>
+
       </View>
     </View>
   );

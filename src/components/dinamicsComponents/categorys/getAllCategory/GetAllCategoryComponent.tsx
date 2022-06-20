@@ -7,19 +7,16 @@ import { styles } from './GetAllCategoryStyle'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-interface GetAllCategoryProps {
-  navigation: any;
-}
 
-const GetAllCategoryComponent = ({ navigation }: GetAllCategoryProps) => {
+const GetAllCategoryComponent = ({ navigation }: any) => {
 
   const [categorys, setCategorys] = useState<Category[]>([])
 
 
   useEffect(() => {
     getAll()
-  }, [categorys.length])
-
+  })     
+        
   async function getAll() {
     await findAll("/categoria", setCategorys, {
 
@@ -28,6 +25,13 @@ const GetAllCategoryComponent = ({ navigation }: GetAllCategoryProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>GetAllCategoryComponent</Text>
+      <TouchableOpacity style={styles.buttonRegister}
+        onPress={() => navigation.navigate('PostPutCategory',{
+          id:0
+      })}>
+          <Text style={styles.buttonText}>Register new category </Text>
+        
+        </TouchableOpacity>
       <FlatList
         data={categorys}
         renderItem={(category) => {
@@ -47,13 +51,13 @@ const GetAllCategoryComponent = ({ navigation }: GetAllCategoryProps) => {
               </View>
               <View style={styles.cardItem}>
                 <TouchableOpacity>
-                  <MaterialCommunityIcons name="delete-outline" size={70} color="red" 
+                  <MaterialCommunityIcons name="delete-outline" size={70} color="#DC3545" 
                   onPress={() => navigation.navigate('DeleteCategory',{
                     id:category.item.id
                 })}/>
                 </TouchableOpacity>
                 <TouchableOpacity >
-                  <MaterialCommunityIcons name="square-edit-outline" size={70} color="blue"
+                  <MaterialCommunityIcons name="square-edit-outline" size={70} color="#62A2C8"
                    onPress={() => navigation.navigate('PostPutCategory',{
                     id:category.item.id
                 })}/>

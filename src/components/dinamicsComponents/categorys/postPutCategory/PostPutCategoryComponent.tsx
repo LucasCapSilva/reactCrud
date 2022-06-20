@@ -7,9 +7,8 @@ import { findById, post, put } from '../../../../service/CategoryService';
 import { styles } from './PostPutCategoryStyle'
 import { Feather } from '@expo/vector-icons';
 
-const PostPutCategoryComponent = ({ route, navigation }: any) => {
-  var id = 0; 
 
+const PostPutCategoryComponent = ({ route, navigation }: any ) => {
 
   const [category, setCategory] = useState<Category>({
     id: 0,
@@ -17,15 +16,14 @@ const PostPutCategoryComponent = ({ route, navigation }: any) => {
   })
 
 
-  useEffect(() => {
-     id  = route.params.id;
-      if (id != 0) {
+  useEffect(() => { 
+      if (route.params.id != 0) {
       getById()  
       }
   }, [])
 
   async function getById() {
-    await findById(`/categoria/${id}`, setCategory, {
+    await findById(`/categoria/${route.params.id}`, setCategory, {
 
     })
   }
@@ -33,23 +31,27 @@ const PostPutCategoryComponent = ({ route, navigation }: any) => {
 
 
 async function onSubmit() {
-  if (id != 0) {
+  if (route.params.id != 0) {
     await put(`/categoria`,category, setCategory, {
 
     })
-      alert('Tema atualizado com sucesso');
+    await alert('Category updated with success');
+    back()
   } else {
     await post(`/categoria`,category, setCategory, {
-
+    
     })
-      alert('Tema cadastrado com sucesso');
+    alert('Category created with success');
+    back()
   }
-  back()
+ 
 
 }
 
 function back() {
-  navigation.navigate('GetAllCategory')
+  navigation.navigate('GetAllCategory');
+
+
 }
 
 

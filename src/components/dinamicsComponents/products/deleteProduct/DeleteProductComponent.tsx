@@ -3,12 +3,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Product from '../../../../model/Product';
-import { findById } from '../../../../service/CategoryService';
+import { deleteById, findById } from '../../../../service/ProductService';
 import { styles } from './DeleteProductStyle'
 
 
 const DeleteProductComponent = ({ route, navigation }: any) => {
-  var id  = route.params.id;
 
   const [product, setProduct] = useState<Product>({
     id: 0,
@@ -21,9 +20,17 @@ const DeleteProductComponent = ({ route, navigation }: any) => {
   }, [])
 
   async function getById() {
-    await findById(`/produtos/${id}`, setProduct, {
+    await findById(`/produtos/${route.params.id}`, setProduct, {
 
     })
+  }
+
+  async function deleteProduct() {
+    await deleteById(`/produtos/${route.params.id}`, {
+
+    })
+    await alert('Product deleted with success');
+    await navigation.navigate('GetAllProduct');
   }
 
 
@@ -44,11 +51,17 @@ const DeleteProductComponent = ({ route, navigation }: any) => {
           />
         </View>
         <View style={styles.cardItem}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="delete-outline" size={70} color="red" />
+          <Text style={styles.textItem}>{product.categoria?.description}</Text>
+        </View>
+        <View style={styles.cardItem}>
+          <TouchableOpacity style={styles.buttonSend} onPress={() => deleteProduct()}>
+            <MaterialCommunityIcons name="delete-outline" size={20} color="#FFFFFF"/>
+            <Text style={styles.buttonText}>Delete</Text>
           </TouchableOpacity>
-          <TouchableOpacity >
-            <MaterialCommunityIcons name="square-edit-outline" size={70} color="blue" />
+
+          <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.navigate('GetAllProduct')}>
+            <MaterialCommunityIcons name="delete-outline" size={20} color="#FFFFFF"/>
+            <Text style={styles.buttonText}>Go Back</Text>
           </TouchableOpacity>
         </View>
       </View>

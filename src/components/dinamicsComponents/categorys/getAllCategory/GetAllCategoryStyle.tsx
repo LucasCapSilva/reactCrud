@@ -35,5 +35,24 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold"
   },
+  buttonRegister:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:"center",
+    alignSelf:"center",
+    borderColor:"#28A745",
+    backgroundColor:"#28A745",
+    padding: 15,
+    borderWidth: 1,
+    borderRadius:20,
+    width:"70%",
+    marginVertical:"2%",
+  },
+  buttonText:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color:"#FFFFFF"
+   
+  }
 });
 

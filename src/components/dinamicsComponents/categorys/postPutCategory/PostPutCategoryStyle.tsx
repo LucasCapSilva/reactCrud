@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { color } from "react-native-reanimated";
 
 export const styles = StyleSheet.create({
   container: {
@@ -46,8 +45,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems:"center",
-    borderColor:"#2968C8",
-    backgroundColor:"#2968C8",
+    borderColor:"#527BFF",
+    backgroundColor:"#527BFF",
     padding: 15,
     borderWidth: 1,
     borderRadius:20,
