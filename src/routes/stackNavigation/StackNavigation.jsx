@@ -11,6 +11,7 @@ import DeleteProductComponent from '../../components/dinamicsComponents/products
 import GetAllCategoryComponent from '../../components/dinamicsComponents/categorys/getAllCategory/GetAllCategoryComponent';
 import PostPutCategoryComponent from '../../components/dinamicsComponents/categorys/postPutCategory/PostPutCategoryComponent';
 import DeleteCategoryComponent from '../../components/dinamicsComponents/categorys/deleteCategory/DeleteCategoryComponent';
+import LoginScreen from '../../pages/login/LoginScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,9 +22,11 @@ function StackNavigation() {
       screenOptions={{
         headerShown: true
       }}
-      initialRouteName="GetAllProduct"
+      initialRouteName="Login"
       >
         <Stack.Screen  name="Home"   component={HomeScreen} />
+
+        <Stack.Screen name="Login" component={LoginScreen} />
 
         <Stack.Screen name="Product" component={ProductScreen} />
         <Stack.Screen name="GetAllProduct" component={GetAllProductComponent} />
