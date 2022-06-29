@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 import AllCardsComponets from '../../components/structural components/allCardsComponents/AllCardsComponets';
-import ButtonComponent from '../../components/structural components/buttonComponent/ButtonComponent';
+import ButtonComponent from '../../components/structural components/formComponent/buttonComponent/ButtonComponent';
 import CaroucelComponent from '../../components/structural components/caroucelComponent/CaroucelComponent';
 import { styles } from './HomeStyle'
 

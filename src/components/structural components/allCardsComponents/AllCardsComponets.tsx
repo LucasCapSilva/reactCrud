@@ -1,7 +1,8 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
-import ButtonComponent from '../buttonComponent/ButtonComponent';
+import ButtonComponent from '../formComponent/buttonComponent/ButtonComponent';
+
 import { styles } from './AllCardsComponetsStyle';
 
 
@@ -33,7 +34,7 @@ const AllCardsComponets = ({ data }: any) => {
                                 />
                             </View>
                             <View style={styles.cardItem}>
-                            <ButtonComponent  variation={"styles.sucess"} title={"Send"} logo={"delete-outline"}/>
+                            <ButtonComponent  handleClick={null} title={"Send"}/>
                             </View>
                         </View>
                     )

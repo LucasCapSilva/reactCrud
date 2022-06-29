@@ -22,7 +22,7 @@ function StackNavigation() {
       screenOptions={{
         headerShown: true
       }}
-      initialRouteName="Home"
+      initialRouteName="Login"
       >
         <Stack.Screen  name="Home"   component={HomeScreen} />
 
