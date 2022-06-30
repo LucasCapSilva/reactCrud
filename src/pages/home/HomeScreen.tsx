@@ -1,54 +1,48 @@
 
 import { useState } from 'react';
-import { Text, View } from 'react-native';
-import AllCardsComponets from '../../components/structural components/allCardsComponents/AllCardsComponets';
-import ButtonComponent from '../../components/structural components/formComponent/buttonComponent/ButtonComponent';
-import CaroucelComponent from '../../components/structural components/caroucelComponent/CaroucelComponent';
+import { ScrollView, Text, View } from 'react-native';
 import { styles } from './HomeStyle'
+import CreditCardComponent from '../../components/structural components/creditCard/CreditCardComponent';
+import CardNameComponent from '../../components/structural components/cards/cardNameComponent/CardNameComponent';
+import CardMoneyComponent from '../../components/structural components/cards/cardMoneyComponent/CardMoneyComponent';
+import CardTransactionComponent from '../../components/structural components/cards/cardTransactionComponent/CardTransactionComponent';
+import AllCardsComponets from '../../components/structural components/allCardsComponents/AllCardsComponets';
+
 
 const HomeScreen = () => {
-  const [categorys, setCategorys] = useState<any[]>([{ id: 1, description: 'Category 1' }, { id: 2, description: 'Category 2' }, { id: 3, description: 'Category 3' }])
   const [datas, setDatas] = useState([
-    {
-      id: 1,
-      image: `https://picsum.photos/1440/2842?random=1`,
-      title: `This is the title 1!`,
-      subtitle: `This is the subtitle 1!`,
-    },
-    {
-      id: 2,
-      image: `https://picsum.photos/1440/2842?random=1`,
-      title: `This is the title 2!`,
-      subtitle: `This is the subtitle 2!`,
-    },
-    {
-      id: 3,
-      image: `https://picsum.photos/1440/2842?random=1`,
-      title: `This is the title 3!`,
-      subtitle: `This is the subtitle 3!`,
-    },
-  ]);
+    {card:<CardTransactionComponent name={'Netflix'} value={100.00}/>}
+  ,{card:<CardTransactionComponent name={'Ifood'} value={55.00}/>}
+  ,{card:<CardTransactionComponent name={'Nagumo'} value={350.55}/>}
+  ,{card:<CardTransactionComponent name={'Mercado Livre'} value={1.264}/>}])
   function handleClick() {
     alert('Ola mundo');
   }
 
   return (
 
-
-      <View style={styles.container}>
-        <Text style={styles.title}>HomeComponent</Text>
-
-        <ButtonComponent handleClick={handleClick} variation={"styles.sucess"} title={"Hello"} logo={"delete-outline"} />
-        <AllCardsComponets data={categorys} />
-
+    <View style={styles.container}>
+     
+      
+      <View>
+        
+        <CardNameComponent name={"Lucas"}/>
+      </View>
+      <View>
+        <CreditCardComponent bankStatement={"$5,156.00"} numberCard={"63.431.145"} nameCard={"Lucas C Silva"}/>
+        <CardMoneyComponent value={4.264}/>
+        <View>
+          <AllCardsComponets  data={datas}/>
+        <CardTransactionComponent name={'Netflix'} value={4.264}/>
+        
+        </View>
+        
 
       </View>
-
-      // <View style={styles.container2}>
-      //   <CaroucelComponent data={datas} />
-      // </View>
-
-
+      
+      
+    
+    </View>
 
   );
 }

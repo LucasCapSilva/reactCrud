@@ -13,6 +13,7 @@ import PostPutCategoryComponent from '../../components/dinamicsComponents/catego
 import DeleteCategoryComponent from '../../components/dinamicsComponents/categorys/deleteCategory/DeleteCategoryComponent';
 import LoginScreen from '../../pages/login/LoginScreen';
 import RegisterScreen from '../../pages/register/RegisterScreen';
+import TabNavigation from '../tabNavigation/TabNavigation';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,25 +22,17 @@ function StackNavigation() {
   return (
       <Stack.Navigator  
       screenOptions={{
-        headerShown: true
+        headerShown: false
       }}
       initialRouteName="Login"
       >
-        <Stack.Screen  name="Home"   component={HomeScreen} />
+      
 
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
 
-        <Stack.Screen name="Product" component={ProductScreen} />
-        <Stack.Screen name="GetAllProduct" component={GetAllProductComponent} />
-        <Stack.Screen name="PostPutProduct" component={PostPutProductComponent} />
-        <Stack.Screen name="DeleteProduct" component={DeleteProductComponent} />
+        <Stack.Screen  name="Home"   component={TabNavigation} />
 
-
-        <Stack.Screen name="Category" component={CategoryScreen} />
-        <Stack.Screen name="GetAllCategory" component={GetAllCategoryComponent} />
-        <Stack.Screen name="PostPutCategory" component={PostPutCategoryComponent} />
-        <Stack.Screen name="DeleteCategory" component={DeleteCategoryComponent} />
       </Stack.Navigator>
   );
 }

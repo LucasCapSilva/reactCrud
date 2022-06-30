@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: '#FFFFFF',
     padding: "7%",
-  
+    paddingTop: StatusBar.currentHeight,
   },
 miniContainer:{
 marginHorizontal: "3%",

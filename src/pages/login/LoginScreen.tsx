@@ -20,11 +20,17 @@ const LoginScreen = ({navigation}:any) => {
    navigation.navigate('Register');
   }
 
+  function goToHome() {
+    navigation.navigate('Home');
+   }
+ 
+
   async function auth(){
     try {
       let results = await LocalAuthentication.authenticateAsync();
       if(results.success) {
         Alert.alert('alert', 'login success')
+        navigation.navigate('Home');
       } else {
         Alert.alert('alert',  JSON.stringify(results))
       }
@@ -37,7 +43,7 @@ const LoginScreen = ({navigation}:any) => {
   }
 
   const [inputs, setInputs] = useState([{ input: <InputComponent title={"Email"} type={"email"} /> }, { input: <InputComponent title={"Password"} type={"password"} /> }]);
-  const [buttons, setButtons] = useState([{ button: <ButtonComponent handleClick={handleClick}  title={"Login In"} styleVariant="sucess" /> }, { button: <ButtonComponent handleClick={goToRegister} title={"Register"} styleVariant="warning"/> }])
+  const [buttons, setButtons] = useState([{ button: <ButtonComponent handleClick={goToHome}  title={"Login In"} styleVariant="sucess" /> }, { button: <ButtonComponent handleClick={goToRegister} title={"Register"} styleVariant="warning"/> }])
   const [buttonSend, setButtonSend] = useState(<ButtonComponent handleClick={auth} title={"Biometric"} styleVariant="default"/>)
   
 
