@@ -5,6 +5,9 @@ import CategoryScreen from '../../pages/category/CategoryScreen';
 import HomeScreen from '../../pages/home/HomeScreen';
 import ProductScreen from '../../pages/products/ProductScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import TransferScreen from '../../pages/transfer/TransferScreen';
+import PixScreen from '../../pages/pix/PixScreen';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -28,7 +31,7 @@ function TabNavigation() {
           )
         }}
       />
-      <Tab.Screen name="Cards" component={HomeScreen}
+      <Tab.Screen name="Transfer money" component={TransferScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons size={30}
@@ -37,17 +40,17 @@ function TabNavigation() {
           )
         }}
       />
-      <Tab.Screen name="Activity" component={HomeScreen}
+      <Tab.Screen name="Pix" component={PixScreen}
       
         options={{
           tabBarIcon: () => (
             <Ionicons size={30} 
             color="#E3371E"
-            name="options" />
+            name="wallet" />
           )
         }}
       />
-        <Tab.Screen name="Settings" component={HomeScreen}
+        <Tab.Screen name="Settings" component={CategoryScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons size={30}
