@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './FormComponentStyle';
 
@@ -6,9 +6,17 @@ import { styles } from './FormComponentStyle';
 
 const FormComponent = ({ inputsComponents, buttonsComponents, buttonSendComponent }: any) => {
 
-  const [inputs, setInputs] = useState(inputsComponents);
-  const [buttons, setButtons] = useState(buttonsComponents);
-  const [buttonSend, setButtonSend] = useState(buttonSendComponent);
+  const [inputs, setInputs] = useState([]);
+  const [buttons, setButtons] = useState([]);
+  const [buttonSend, setButtonSend] = useState([]);
+
+  useEffect(() => {
+    setInputs(inputsComponents)
+    setButtons(buttonsComponents)
+    setButtonSend(buttonSendComponent)
+  }, [])
+
+  
 
   return (
 
@@ -23,16 +31,16 @@ const FormComponent = ({ inputsComponents, buttonsComponents, buttonSendComponen
         }}
       />
       <View style={styles.container}>
-        <FlatList
-          data={buttons}
-          renderItem={(button) => {
+        {
+          buttons.map((button: any, i) => {
             return (
-              <View style={styles.containerItem}>
-                {button.item.button}
+              <View key={i} style={styles.containerItem}>
+                {button.button}
               </View>
             )
-          }}
-        />
+          })
+        }
+
 
       </View>
       {buttonSend}

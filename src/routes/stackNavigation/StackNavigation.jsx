@@ -12,6 +12,7 @@ import GetAllCategoryComponent from '../../components/dinamicsComponents/categor
 import PostPutCategoryComponent from '../../components/dinamicsComponents/categorys/postPutCategory/PostPutCategoryComponent';
 import DeleteCategoryComponent from '../../components/dinamicsComponents/categorys/deleteCategory/DeleteCategoryComponent';
 import LoginScreen from '../../pages/login/LoginScreen';
+import RegisterScreen from '../../pages/register/RegisterScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ function StackNavigation() {
         <Stack.Screen  name="Home"   component={HomeScreen} />
 
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
 
         <Stack.Screen name="Product" component={ProductScreen} />
         <Stack.Screen name="GetAllProduct" component={GetAllProductComponent} />

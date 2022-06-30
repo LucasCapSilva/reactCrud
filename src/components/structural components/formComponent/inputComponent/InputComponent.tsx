@@ -28,13 +28,13 @@ const InputComponent = ({ title, type }: any) => {
             setSecure(true)
         }else if (type === 'phone-pad') {
             setypeKeyboard('phone-pad');
-            setSecure(true)
+            setSecure(false)
         }else if (type === 'decimal-pad') {
             setypeKeyboard('decimal-pad');
-            setSecure(true)
+            setSecure(false)
         }else if (type === 'url') {
             setypeKeyboard('url');
-            setSecure(true)
+            setSecure(false)
         }
         
     })
