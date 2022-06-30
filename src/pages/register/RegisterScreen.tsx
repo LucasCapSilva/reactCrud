@@ -8,7 +8,7 @@ import TitleComponent from '../../components/structural components/textComponent
 import SubTitleComponent from '../../components/structural components/textComponent/subTitleComponent/SubTitleComponent';
 import { useEffect, useState } from 'react';
 import { View, Alert, ScrollView, TouchableOpacity, Text } from 'react-native';
-import { LogBox } from 'react-native';
+
 
 
 const RegisterScreen = ({ navigation }: any) => {
@@ -26,9 +26,7 @@ const RegisterScreen = ({ navigation }: any) => {
   const [buttons, setButtons] = useState([])
   const [buttonSend, setButtonSend] = useState(<ButtonComponent handleClick={handleClick} title={"Register"} styleVariant="warning" />)
 
-  useEffect(() => {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-  }, [])
+
 
   return (
     <View style={styles.container}>

@@ -22,14 +22,15 @@ const FormComponent = ({ inputsComponents, buttonsComponents, buttonSendComponen
 
     <View>
 
-      <FlatList
-        data={inputs}
-        renderItem={(input) => {
-          return (
-            input.item.input
-          )
-        }}
-      />
+      {
+          inputs.map((input: any, i) => {
+            return (
+              <View key={i} >
+                {input.input}
+              </View>
+            )
+          })
+        }
       <View style={styles.container}>
         {
           buttons.map((button: any, i) => {

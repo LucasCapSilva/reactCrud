@@ -7,7 +7,7 @@ import LogoComponent from '../../components/structural components/logoComponent/
 import TitleComponent from '../../components/structural components/textComponent/titleComponent/TitleComponent';
 import SubTitleComponent from '../../components/structural components/textComponent/subTitleComponent/SubTitleComponent';
 import { useEffect, useState } from 'react';
-import { View, Alert, LogBox, ScrollView } from 'react-native';
+import { View, Alert, ScrollView } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
 
 const LoginScreen = ({navigation}:any) => {
@@ -40,9 +40,7 @@ const LoginScreen = ({navigation}:any) => {
   const [buttons, setButtons] = useState([{ button: <ButtonComponent handleClick={handleClick}  title={"Login In"} styleVariant="sucess" /> }, { button: <ButtonComponent handleClick={goToRegister} title={"Register"} styleVariant="warning"/> }])
   const [buttonSend, setButtonSend] = useState(<ButtonComponent handleClick={auth} title={"Biometric"} styleVariant="default"/>)
   
-  useEffect(() => {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-  }, [])
+
 
   return (
     <View style={styles.container}>
